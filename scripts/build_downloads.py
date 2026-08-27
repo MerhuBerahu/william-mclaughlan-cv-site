@@ -154,25 +154,18 @@ def side_rule(c, y):
 
 
 def draw_tech_logo(c: canvas.Canvas, label: str, card_x: float, card_y: float, card_w: float, card_h: float):
-    """Draw product logo centred inside its rounded technology card."""
+    """Draw product logo/mark directly on the card, without a secondary surrounding box."""
     cx = card_x + card_w / 2
-    icon_cy = card_y + card_h * 0.61
+    icon_cy = card_y + card_h * 0.62
     icon = TECH_ICONS.get(label)
     if icon and (ASSETS / "icons" / icon).exists():
-        size = 6.8 * mm
-        bg = size + 1.8 * mm
-        c.setFillColor(colors.Color(1, 1, 1, alpha=0.92))
-        c.roundRect(cx - bg / 2, icon_cy - bg / 2, bg, bg, 2.0 * mm, fill=1, stroke=0)
+        size = 7.8 * mm
         c.drawImage(str(ASSETS / "icons" / icon), cx - size / 2, icon_cy - size / 2, width=size, height=size, preserveAspectRatio=True, anchor="c", mask="auto")
         return
     mark = BRAND_MARKS.get(label, label[:4].upper())
-    w = min(max(c.stringWidth(mark, "Helvetica-Bold", 4.3) + 3.0 * mm, 7.8 * mm), 13.2 * mm)
-    h = 5.8 * mm
-    c.setFillColor(colors.Color(1, 1, 1, alpha=0.88))
-    c.roundRect(cx - w / 2, icon_cy - h / 2, w, h, 1.8 * mm, fill=1, stroke=0)
-    c.setFillColor(COLORS["ink"])
-    c.setFont("Helvetica-Bold", 3.9 if len(mark) > 4 else 4.8)
-    c.drawCentredString(cx, icon_cy - 1.35 * mm, mark)
+    c.setFillColor(COLORS["side_text"])
+    c.setFont("Helvetica-Bold", 3.9 if len(mark) > 4 else 5.0)
+    c.drawCentredString(cx, icon_cy - 1.5 * mm, mark)
 
 
 def draw_sidebar(c: canvas.Canvas, page_num: int):
@@ -191,11 +184,20 @@ def draw_sidebar(c: canvas.Canvas, page_num: int):
             y = para(c, esc(item), SIDE_TEXT, x, y, w)
         side_rule(c, y - 2 * mm); y -= 9 * mm
         y = para(c, "TECHNOLOGY", SIDE_TITLE, x, y, w)
-        # Keep the PDF sidebar clean: no icon/box grid, just readable ATS-safe text.
-        tech_labels = [label for _, label in TECH]
-        for i in range(0, len(tech_labels), 2):
-            y = para(c, " • ".join(tech_labels[i:i + 2]), SIDE_MUTED, x, y, w)
-        y -= 2 * mm
+        cell_w = (w - 5 * mm) / 3
+        cell_h = 13.8 * mm
+        for idx, (abbr, label) in enumerate(TECH):
+            col = idx % 3
+            row = idx // 3
+            tx = x + col * (cell_w + 2.5 * mm)
+            ty = y - (row + 1) * cell_h
+            card_y = ty + 1.5 * mm
+            card_h = cell_h - 2 * mm
+            round_rect(c, tx, card_y, cell_w, card_h, 3 * mm, colors.Color(1, 1, 1, alpha=0.075), colors.Color(1, 1, 1, alpha=0.13), 0.5)
+            draw_tech_logo(c, label, tx, card_y, cell_w, card_h)
+            c.setFillColor(COLORS["side_muted"]); c.setFont("Helvetica", 4.8)
+            c.drawCentredString(tx + cell_w / 2, ty + 3.0 * mm, label[:17])
+        y -= math.ceil(len(TECH) / 3) * cell_h + 4 * mm
         side_rule(c, y); y -= 7 * mm
         y = para(c, "SKILLS", SIDE_TITLE, x, y, w)
         y = draw_chips(c, CHIPS[:12], x, y, w)
