@@ -1,0 +1,111 @@
+{
+  "name": "William McLaughlan",
+  "contact": {
+    "email": "wmclaughlan@gmail.com",
+    "phone": "07728732647",
+    "linkedin": "linkedin.com/in/william-mclaughlan",
+    "location": "Glasgow, Scotland, United Kingdom"
+  },
+  "target_role": "Head of Technology / Head of IT",
+  "profile": "IT Service Desk Manager and senior infrastructure/support professional with hands-on experience across Microsoft 365, Entra ID/Azure AD, Intune/MDM, Windows estates, networking, SaaS platforms, VoIP/contact centre technology and business-critical systems. Currently leading service desk delivery at McQueens Dairies after joining as an Infrastructure Engineer, combining day-to-day operational leadership with practical infrastructure, supplier, licensing, business systems and user support. Experienced in supporting multiple sites, improving knowledge bases, managing assets, contributing to technology strategy/roadmap decisions, and delivering practical technology change in busy operational environments. ITIL v4 certified, commercially aware and able to explain technology risks, recommendations and priorities clearly to senior management and non-technical stakeholders. Ready to step into a broader Head of Technology role while developing formal annual budget ownership.",
+  "core_skills": [
+    "IT service delivery and service desk leadership",
+    "Microsoft 365 administration, Exchange Online and hybrid Exchange",
+    "Entra ID / Azure AD, Active Directory, GPO and identity administration",
+    "Intune, SCCM, JAMF and wider MDM administration",
+    "Windows estate management, imaging, patching and end-user computing",
+    "Networks, VPN, remote access and connectivity troubleshooting",
+    "Cyber security controls, access management, Mimecast and risk awareness",
+    "Business systems support including Dynamics 365, Roundsman and bespoke applications",
+    "Avaya, RingCentral, Zoom and VoIP/contact centre platforms",
+    "Supplier, MSP, licensing, renewals and contract coordination",
+    "Backup, disaster recovery, business continuity and operational resilience",
+    "Project delivery, technology change, documentation and knowledge-base improvement",
+    "Asset management, hardware lifecycle, SaaS administration and support",
+    "LANDesk, PsExec, RMM tooling and controlled patch deployment",
+    "Clear senior-stakeholder communication and practical problem solving"
+  ],
+  "experience": [
+    {
+      "company": "McQueens Dairies",
+      "role": "Service Desk Manager / Infrastructure Engineer",
+      "dates": "Jan 2025 \u2013 Present",
+      "intro": "Joined McQueens Dairies as an Infrastructure Engineer and moved into Service Desk Manager responsibility from Oct 2025, covering day-to-day IT service delivery, infrastructure support, Microsoft 365, business systems, suppliers, service improvement and user support across the Glasgow-based business.",
+      "bullets": [
+        "Lead and coordinate service desk activity as Service Desk Manager, prioritising incidents and requests to maintain reliable support across company locations and operational teams.",
+        "Provide hands-on infrastructure and endpoint support across Microsoft 365, Entra ID/Azure AD, Active Directory, Exchange, Windows devices, access management and connectivity.",
+        "Support and improve business-critical systems including Dynamics 365, Roundsman, Zoom and other SaaS or bespoke operational platforms.",
+        "Work with suppliers, MSPs and third-party partners to resolve service issues, coordinate renewals, manage licensing needs and support technology contracts.",
+        "Contribute to cyber security controls through access management, patching, endpoint support, policy awareness and practical risk reduction.",
+        "Support backup, disaster recovery and business continuity arrangements by keeping systems, support processes and escalation routes reliable.",
+        "Deliver IT projects and technology change, balancing BAU support with improvements to tooling, documentation, processes and user experience.",
+        "Advise senior management and non-technical stakeholders on technology risks, options and recommendations in clear, practical language.",
+        "Provide operational input into cost control, renewals and technology investment decisions; ready to take on formal annual budget ownership."
+      ]
+    },
+    {
+      "company": "Peninsula Group",
+      "role": "Group Service Desk Engineer",
+      "dates": "May 2021 \u2013 Jan 2025",
+      "intro": "Provided on-site and remote support across UK and ROI sites from Glasgow for a large HR, employment law and health & safety consultancy group operating multiple brands, domains and business applications.",
+      "bullets": [
+        "Administered Microsoft 365 across multiple domains within the tenant, including Exchange, user access and day-to-day service desk administration.",
+        "Managed users and groups across ADM+, Active Directory and Entra ID/Azure AD in a complex multi-domain environment.",
+        "Supported a hybrid Exchange setup, remote working technologies, conferencing tools, FTP solutions, digital signage and bespoke business applications.",
+        "Supported SCCM-to-Intune migration activity and MDM administration across Windows, iOS and Mac estates, including JAMF support for macOS migration.",
+        "Maintained asset records through Asset Panda and supported desktops, laptops, docks, mobile devices and printers across the estate.",
+        "Administered email security and management tooling including Mimecast, and supported Citrix Workspace for remote and application access.",
+        "Managed ScreenCloud digital signage and associated VM support, helping maintain visibility of operational information across sites."
+      ]
+    },
+    {
+      "company": "Hays Travel",
+      "role": "2nd Line IT Support Technician",
+      "dates": "Sep 2020 \u2013 May 2021",
+      "intro": "Delivered home-based remote technical support for users supporting Covid-19 government helplines, including track and trace and vaccine booking services.",
+      "bullets": [
+        "Provided remote support to a wide range of BYOD users through TeamViewer, adapting communication style for varied technical confidence levels.",
+        "Resolved system, VoIP, VPN, browser, remote working and account issues under time-sensitive service conditions.",
+        "Set up digital signage solutions for store fronts and supported comms-room recabling and upgrades while locations were closed.",
+        "Created and administered accounts across Active Directory, Microsoft 365, RingCentral and Forticlient VPN."
+      ]
+    },
+    {
+      "company": "DNATA Travel (U.K.) Ltd.",
+      "role": "Senior 2nd Line IT Support Technician",
+      "dates": "Jan 2018 \u2013 Sep 2020",
+      "intro": "Supported a busy office environment and managed sites across the UK, covering BAU requests, incidents, project work, patching, deployments and legacy application support.",
+      "bullets": [
+        "Handled incidents and requests by phone, email and ticketing system, working to tight SLAs across hardware, software, website and user administration.",
+        "Overhauled the knowledge base, introducing logical structure and standard templates to improve support quality and consistency.",
+        "Migrated telephony to a VoIP platform using Avaya and supported remote working capability during Covid lockdowns.",
+        "Created and maintained a golden image using Sysprep for FOG imaging, supporting deployment consistency across the estate.",
+        "Upgraded physical and virtual estates from Windows 7/8 to Windows 10 while preserving legacy bespoke software and services.",
+        "Tested Windows and software patches before deployment using RMM tools, Landesk and PsExec, and supported groundwork for cloud migration."
+      ]
+    }
+  ],
+  "earlier_career": [
+    "DNATA Travel (U.K.) Ltd. \u2014 Ticketing Consultant \u2014 Oct 2013 \u2013 Jan 2018",
+    "BellMac \u2014 Forester \u2014 Feb 2009 \u2013 Mar 2013",
+    "Sky \u2014 Sales Advisor \u2014 Nov 2008 \u2013 Nov 2010",
+    "British Gas \u2014 Customer Service Advisor \u2014 Aug 2007 \u2013 Feb 2008",
+    "Central College of Commerce \u2014 Aug 2006 \u2013 Jun 2007",
+    "Cladco \u2014 Operator/Forklift Driver \u2014 Mar 2005 \u2013 Jul 2006",
+    "British Army \u2014 Gunner \u2014 Aug 2002 \u2013 Mar 2005"
+  ],
+  "certifications": [
+    "ITIL v4 Certified"
+  ],
+  "interests": [
+    "Game development",
+    "Surfing",
+    "Camping",
+    "Reading"
+  ],
+  "notes": [
+    "LinkedIn PDF was used to add McQueens Infrastructure Engineer start history, Glasgow location, LANDesk/Windows/Avaya top skills, and corrected Peninsula/DNATA titles/dates.",
+    "User-provided current title remains authoritative: Service Desk Manager since Oct 2025.",
+    "Budget ownership is positioned honestly as operational input/cost awareness rather than claimed annual budget ownership."
+  ]
+}
