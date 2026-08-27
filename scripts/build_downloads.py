@@ -332,7 +332,7 @@ def build_pdf():
     y = PAGE_H - 16 * mm
     y = draw_hero(c, y)
     y = draw_section_title(c, "SUMMARY", y)
-    profile_parts = re.split(r"(?<=business\. )", DATA["profile"], maxsplit=1)
+    profile_parts = re.split(r"(?<=depends on\. )", DATA["profile"], maxsplit=1)
     for part in profile_parts:
         if part.strip():
             y = para(c, esc(part.strip()), BODY, MAIN_X, y, MAIN_W)
