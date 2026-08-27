@@ -1,6 +1,6 @@
 # William McLaughlan CV Site
 
-Static GitHub Pages CV site adapted from the supplied `heronvalev/cv-site` fork.
+Static GitHub Pages CV site for William McLaughlan.
 
 ## Files
 
@@ -8,7 +8,7 @@ Static GitHub Pages CV site adapted from the supplied `heronvalev/cv-site` fork.
 - `styles.css` — layout and visual styling
 - `assets/William_McLaughlan_CV.pdf` — downloadable styled PDF CV
 - `assets/William_McLaughlan_CV.docx` — editable DOCX CV
-- `assets/avatar.svg` — initials avatar
+- `assets/headshot.png` — CV headshot
 - `assets/cv-content.json` — source content used for the CV draft
 
 ## Local preview
@@ -23,6 +23,3 @@ Then open `http://127.0.0.1:8080/`.
 
 This repo is ready to publish from the `main` branch root using GitHub Pages.
 
-## Icon attribution
-
-Selected product/app icons are sourced from https://github.com/aaronparker/icons.

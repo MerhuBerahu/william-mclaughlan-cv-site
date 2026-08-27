@@ -1,13 +1,13 @@
 {
   "name": "William McLaughlan",
   "contact": {
-    "email": "wmclaughlan@gmail.com",
+    "email": "opportunities@williammclaughlan.com",
     "phone": "07728732647",
     "linkedin": "linkedin.com/in/william-mclaughlan",
     "location": "Glasgow, Scotland, United Kingdom"
   },
-  "target_role": "Head of Technology / Head of IT",
-  "profile": "IT Service Desk Manager and senior infrastructure/support professional with hands-on experience across Microsoft 365, Entra ID/Azure AD, Intune/MDM, Windows estates, networking, SaaS platforms, VoIP/contact centre technology and business-critical systems. Currently leading service desk delivery at McQueens Dairies after joining as an Infrastructure Engineer, combining day-to-day operational leadership with practical infrastructure, supplier, licensing, business systems and user support. Experienced in supporting multiple sites, improving knowledge bases, managing assets, contributing to technology strategy/roadmap decisions, and delivering practical technology change in busy operational environments. ITIL v4 certified, commercially aware and able to explain technology risks, recommendations and priorities clearly to senior management and non-technical stakeholders. Ready to step into a broader Head of Technology role while developing formal annual budget ownership.",
+  "target_role": "IT Service Desk Manager",
+  "profile": "IT Service Desk Manager and senior infrastructure/support professional with hands-on experience across Microsoft 365, Entra ID/Azure AD, Intune/MDM, Windows estates, networking, SaaS platforms, VoIP/contact centre technology and business-critical systems. Currently leading service desk delivery at McQueens Dairies after joining as an Infrastructure Engineer, combining day-to-day operational leadership with practical infrastructure, supplier, licensing, business systems and user support. Experienced in supporting multiple sites, improving knowledge bases, managing assets, contributing to technology strategy/roadmap decisions, and delivering practical technology change in busy operational environments. ITIL v4 certified, commercially aware and able to explain technology risks, recommendations and priorities clearly to senior management and non-technical stakeholders.",
   "core_skills": [
     "IT service delivery and service desk leadership",
     "Microsoft 365 administration, Exchange Online and hybrid Exchange",
@@ -23,13 +23,19 @@
     "Project delivery, technology change, documentation and knowledge-base improvement",
     "Asset management, hardware lifecycle, SaaS administration and support",
     "LANDesk, PsExec, RMM tooling and controlled patch deployment",
+    "GPO administration and policy troubleshooting",
+    "Imaging, FOG, Sysprep and deployment support",
+    "Hardware support for desktops, laptops, docks, mobile devices and printers",
+    "Bespoke software and multi-domain SaaS application support",
+    "Digital signage, ScreenCloud, FTP and conferencing support",
+    "FortiClient VPN, TeamViewer, RingCentral and Avaya support",
     "Clear senior-stakeholder communication and practical problem solving"
   ],
   "experience": [
     {
       "company": "McQueens Dairies",
       "role": "Service Desk Manager / Infrastructure Engineer",
-      "dates": "Jan 2025 \u2013 Present",
+      "dates": "Jan 2025 – Present",
       "intro": "Joined McQueens Dairies as an Infrastructure Engineer and moved into Service Desk Manager responsibility from Oct 2025, covering day-to-day IT service delivery, infrastructure support, Microsoft 365, business systems, suppliers, service improvement and user support across the Glasgow-based business.",
       "bullets": [
         "Lead and coordinate service desk activity as Service Desk Manager, prioritising incidents and requests to maintain reliable support across company locations and operational teams.",
@@ -46,7 +52,7 @@
     {
       "company": "Peninsula Group",
       "role": "Group Service Desk Engineer",
-      "dates": "May 2021 \u2013 Jan 2025",
+      "dates": "May 2021 – Jan 2025",
       "intro": "Provided on-site and remote support across UK and ROI sites from Glasgow for a large HR, employment law and health & safety consultancy group operating multiple brands, domains and business applications.",
       "bullets": [
         "Administered Microsoft 365 across multiple domains within the tenant, including Exchange, user access and day-to-day service desk administration.",
@@ -61,7 +67,7 @@
     {
       "company": "Hays Travel",
       "role": "2nd Line IT Support Technician",
-      "dates": "Sep 2020 \u2013 May 2021",
+      "dates": "Sep 2020 – May 2021",
       "intro": "Delivered home-based remote technical support for users supporting Covid-19 government helplines, including track and trace and vaccine booking services.",
       "bullets": [
         "Provided remote support to a wide range of BYOD users through TeamViewer, adapting communication style for varied technical confidence levels.",
@@ -73,7 +79,7 @@
     {
       "company": "DNATA Travel (U.K.) Ltd.",
       "role": "Senior 2nd Line IT Support Technician",
-      "dates": "Jan 2018 \u2013 Sep 2020",
+      "dates": "Jan 2018 – Sep 2020",
       "intro": "Supported a busy office environment and managed sites across the UK, covering BAU requests, incidents, project work, patching, deployments and legacy application support.",
       "bullets": [
         "Handled incidents and requests by phone, email and ticketing system, working to tight SLAs across hardware, software, website and user administration.",
@@ -86,13 +92,13 @@
     }
   ],
   "earlier_career": [
-    "DNATA Travel (U.K.) Ltd. \u2014 Ticketing Consultant \u2014 Oct 2013 \u2013 Jan 2018",
-    "BellMac \u2014 Forester \u2014 Feb 2009 \u2013 Mar 2013",
-    "Sky \u2014 Sales Advisor \u2014 Nov 2008 \u2013 Nov 2010",
-    "British Gas \u2014 Customer Service Advisor \u2014 Aug 2007 \u2013 Feb 2008",
-    "Central College of Commerce \u2014 Aug 2006 \u2013 Jun 2007",
-    "Cladco \u2014 Operator/Forklift Driver \u2014 Mar 2005 \u2013 Jul 2006",
-    "British Army \u2014 Gunner \u2014 Aug 2002 \u2013 Mar 2005"
+    "DNATA Travel (U.K.) Ltd. — Ticketing Consultant — Oct 2013 – Jan 2018",
+    "BellMac — Forester — Feb 2009 – Mar 2013",
+    "Sky — Sales Advisor — Nov 2008 – Nov 2010",
+    "British Gas — Customer Service Advisor — Aug 2007 – Feb 2008",
+    "Central College of Commerce — Aug 2006 – Jun 2007",
+    "Cladco — Operator/Forklift Driver — Mar 2005 – Jul 2006",
+    "British Army — Gunner — Aug 2002 – Mar 2005"
   ],
   "certifications": [
     "ITIL v4 Certified"

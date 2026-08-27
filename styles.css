@@ -76,6 +76,7 @@ body{
   font-size: 0.82rem;
 }
 .side a{ color: var(--side-text); text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.22); overflow-wrap: anywhere; }
+.side a[href^="mailto:"]{ font-size: 0.82rem; letter-spacing: -0.02em; }
 .side a:hover{ border-bottom-color: rgba(255,255,255,0.48); }
 
 .icon-grid{ display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
@@ -109,7 +110,8 @@ body{
   background: linear-gradient(135deg, rgba(247,246,241,0.95), rgba(166,157,134,0.94));
   color: #20221d;
   font-weight: 800;
-  font-size: 0.72rem;
+  font-size: 0.62rem;
+  letter-spacing: -0.03em;
   box-shadow: 0 6px 16px rgba(0,0,0,0.24);
 }
 .icon span:last-child{ font-size: 0.75rem; color: rgba(255,255,255,0.82); line-height: 1.2; }
