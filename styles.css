@@ -90,11 +90,17 @@ body{
   background: rgba(255,255,255,0.06);
   border: 1px solid rgba(255,255,255,0.10);
   text-align: center;
+  overflow: hidden;
 }
 .icon img{
-  width: 34px;
-  height: 34px;
+  display: block;
+  width: 34px !important;
+  height: 34px !important;
+  max-width: 34px !important;
+  max-height: 34px !important;
   object-fit: contain;
+  object-position: center;
+  flex: 0 0 auto;
   filter: drop-shadow(0 6px 12px rgba(0,0,0,0.30));
 }
 .tech-mark{
