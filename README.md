@@ -10,6 +10,13 @@ Static GitHub Pages CV site for William McLaughlan.
 - `assets/William_McLaughlan_CV.docx` — editable DOCX CV
 - `assets/headshot.png` — CV headshot
 - `assets/cv-content.json` — source content used for the CV draft
+- `scripts/build_downloads.py` — regenerates the styled PDF/DOCX/Markdown downloads from `assets/cv-content.json`
+
+## Rebuild downloads
+
+```bash
+uv run --with reportlab --with python-docx scripts/build_downloads.py
+```
 
 ## Local preview
 

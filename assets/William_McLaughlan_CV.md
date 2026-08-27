@@ -1,7 +1,7 @@
 # William McLaughlan
 opportunities@williammclaughlan.com | 07728732647 | linkedin.com/in/william-mclaughlan | Glasgow, Scotland, United Kingdom
 
-## Profile
+## Summary
 IT Service Desk Manager and senior infrastructure/support professional with hands-on experience across Microsoft 365, Entra ID/Azure AD, Intune/MDM, Windows estates, networking, SaaS platforms, VoIP/contact centre technology and business-critical systems. Currently leading service desk delivery at McQueens Dairies after joining as an Infrastructure Engineer, combining day-to-day operational leadership with practical infrastructure, supplier, licensing, business systems and user support. Experienced in supporting multiple sites, improving knowledge bases, managing assets, contributing to technology strategy/roadmap decisions, and delivering practical technology change in busy operational environments. ITIL v4 certified, commercially aware and able to explain technology risks, recommendations and priorities clearly to senior management and non-technical stakeholders.
 
 ## Skills
@@ -28,7 +28,7 @@ IT Service Desk Manager and senior infrastructure/support professional with hand
 - Clear senior-stakeholder communication and practical problem solving
 
 ## Experience
-### McQueens Dairies – Service Desk Manager / Infrastructure Engineer – Jan 2025 – Present
+### Service Desk Manager / Infrastructure Engineer — McQueens Dairies — Jan 2025 – Present
 Joined McQueens Dairies as an Infrastructure Engineer and moved into Service Desk Manager responsibility from Oct 2025, covering day-to-day IT service delivery, infrastructure support, Microsoft 365, business systems, suppliers, service improvement and user support across the Glasgow-based business.
 - Lead and coordinate service desk activity as Service Desk Manager, prioritising incidents and requests to maintain reliable support across company locations and operational teams.
 - Provide hands-on infrastructure and endpoint support across Microsoft 365, Entra ID/Azure AD, Active Directory, Exchange, Windows devices, access management and connectivity.
@@ -39,7 +39,7 @@ Joined McQueens Dairies as an Infrastructure Engineer and moved into Service Des
 - Deliver IT projects and technology change, balancing BAU support with improvements to tooling, documentation, processes and user experience.
 - Advise senior management and non-technical stakeholders on technology risks, options and recommendations in clear, practical language.
 - Provide operational input into cost control, renewals and technology investment decisions; ready to take on formal annual budget ownership.
-### Peninsula Group – Group Service Desk Engineer – May 2021 – Jan 2025
+### Group Service Desk Engineer — Peninsula Group — May 2021 – Jan 2025
 Provided on-site and remote support across UK and ROI sites from Glasgow for a large HR, employment law and health & safety consultancy group operating multiple brands, domains and business applications.
 - Administered Microsoft 365 across multiple domains within the tenant, including Exchange, user access and day-to-day service desk administration.
 - Managed users and groups across ADM+, Active Directory and Entra ID/Azure AD in a complex multi-domain environment.
@@ -48,13 +48,13 @@ Provided on-site and remote support across UK and ROI sites from Glasgow for a l
 - Maintained asset records through Asset Panda and supported desktops, laptops, docks, mobile devices and printers across the estate.
 - Administered email security and management tooling including Mimecast, and supported Citrix Workspace for remote and application access.
 - Managed ScreenCloud digital signage and associated VM support, helping maintain visibility of operational information across sites.
-### Hays Travel – 2nd Line IT Support Technician – Sep 2020 – May 2021
+### 2nd Line IT Support Technician — Hays Travel — Sep 2020 – May 2021
 Delivered home-based remote technical support for users supporting Covid-19 government helplines, including track and trace and vaccine booking services.
 - Provided remote support to a wide range of BYOD users through TeamViewer, adapting communication style for varied technical confidence levels.
 - Resolved system, VoIP, VPN, browser, remote working and account issues under time-sensitive service conditions.
 - Set up digital signage solutions for store fronts and supported comms-room recabling and upgrades while locations were closed.
 - Created and administered accounts across Active Directory, Microsoft 365, RingCentral and Forticlient VPN.
-### DNATA Travel (U.K.) Ltd. – Senior 2nd Line IT Support Technician – Jan 2018 – Sep 2020
+### Senior 2nd Line IT Support Technician — DNATA Travel (U.K.) Ltd. — Jan 2018 – Sep 2020
 Supported a busy office environment and managed sites across the UK, covering BAU requests, incidents, project work, patching, deployments and legacy application support.
 - Handled incidents and requests by phone, email and ticketing system, working to tight SLAs across hardware, software, website and user administration.
 - Overhauled the knowledge base, introducing logical structure and standard templates to improve support quality and consistency.
