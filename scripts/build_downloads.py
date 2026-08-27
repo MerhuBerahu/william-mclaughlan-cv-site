@@ -139,17 +139,17 @@ def draw_sidebar(c: canvas.Canvas, page_num: int):
     if page_num == 1:
         draw_headshot(c, SIDE_W / 2, PAGE_H - 34 * mm, 32 * mm)
         y = PAGE_H - 58 * mm
-    side_rule(c, y); y -= 7 * mm
-    y = para(c, "CONTACT", SIDE_TITLE, x, y, w)
-    contact = DATA["contact"]
-    contacts = [contact["email"], contact["phone"], "Glasgow, Scotland", "linkedin.com/in/william-mclaughlan"]
-    for item in contacts:
-        y = para(c, esc(item), SIDE_TEXT, x, y, w)
     if page_num == 1:
+        side_rule(c, y); y -= 7 * mm
+        y = para(c, "CONTACT", SIDE_TITLE, x, y, w)
+        contact = DATA["contact"]
+        contacts = [contact["email"], contact["phone"], "Glasgow, Scotland", "linkedin.com/in/william-mclaughlan"]
+        for item in contacts:
+            y = para(c, esc(item), SIDE_TEXT, x, y, w)
         side_rule(c, y - 2 * mm); y -= 9 * mm
         y = para(c, "TECHNOLOGY", SIDE_TITLE, x, y, w)
         cell_w = (w - 5 * mm) / 3
-        cell_h = 16.5 * mm
+        cell_h = 13.8 * mm
         for idx, (abbr, label) in enumerate(TECH):
             col = idx % 3
             row = idx // 3
@@ -164,29 +164,36 @@ def draw_sidebar(c: canvas.Canvas, page_num: int):
         y -= math.ceil(len(TECH) / 3) * cell_h + 4 * mm
         side_rule(c, y); y -= 7 * mm
         y = para(c, "SKILLS", SIDE_TITLE, x, y, w)
-        chip_y = y
-        chip_x = x
-        for chip in CHIPS:
-            text_w = c.stringWidth(chip, "Helvetica", 5.5) + 5.4 * mm
-            if chip_x + text_w > x + w:
-                chip_x = x
-                chip_y -= 6.6 * mm
-            round_rect(c, chip_x, chip_y - 4.3 * mm, text_w, 5.3 * mm, 2.6 * mm, colors.Color(1, 1, 1, alpha=0.10), colors.Color(1, 1, 1, alpha=0.14), 0.4)
-            c.setFillColor(COLORS["side_text"]); c.setFont("Helvetica", 5.5)
-            c.drawString(chip_x + 2.2 * mm, chip_y - 2.6 * mm, chip)
-            chip_x += text_w + 1.5 * mm
-        y = chip_y - 10 * mm
+        y = draw_chips(c, CHIPS[:12], x, y, w)
+        y -= 3 * mm
+        para(c, "Continued on next page", SIDE_MUTED, x, y, w)
+    elif page_num == 2:
+        side_rule(c, y); y -= 7 * mm
+        y = para(c, "SKILLS CONTINUED", SIDE_TITLE, x, y, w)
+        y = draw_chips(c, CHIPS[12:], x, y, w)
+        y -= 8 * mm
         side_rule(c, y); y -= 7 * mm
         y = para(c, "OUTSIDE OF IT", SIDE_TITLE, x, y, w)
         para(c, "Game development • Surfing • Camping • Reading", SIDE_MUTED, x, y, w)
-    else:
-        side_rule(c, y - 2 * mm); y -= 9 * mm
-        y = para(c, "CORE STRENGTHS", SIDE_TITLE, x, y, w)
-        for s in ["Service delivery", "Infrastructure", "Supplier coordination", "Business systems", "Cyber security", "Documentation", "Senior stakeholders", "Operational resilience"]:
-            y = para(c, esc(s), SIDE_TEXT, x, y, w)
-        side_rule(c, y - 2 * mm); y -= 9 * mm
-        y = para(c, "CERTIFICATION", SIDE_TITLE, x, y, w)
-        para(c, "ITIL v4 Certified", SIDE_TEXT, x, y, w)
+    elif page_num == 3:
+        # Intentional blank branded sidebar: do not repeat contact/core-strength
+        # content on later pages.
+        return
+
+
+def draw_chips(c: canvas.Canvas, chips: list[str], x: float, y: float, w: float) -> float:
+    chip_y = y
+    chip_x = x
+    for chip in chips:
+        text_w = c.stringWidth(chip, "Helvetica", 5.5) + 5.4 * mm
+        if chip_x + text_w > x + w:
+            chip_x = x
+            chip_y -= 6.6 * mm
+        round_rect(c, chip_x, chip_y - 4.3 * mm, text_w, 5.3 * mm, 2.6 * mm, colors.Color(1, 1, 1, alpha=0.10), colors.Color(1, 1, 1, alpha=0.14), 0.4)
+        c.setFillColor(COLORS["side_text"]); c.setFont("Helvetica", 5.5)
+        c.drawString(chip_x + 2.2 * mm, chip_y - 2.6 * mm, chip)
+        chip_x += text_w + 1.5 * mm
+    return chip_y - 6.5 * mm
 
 
 def draw_hero(c, y):
@@ -271,7 +278,7 @@ def build_pdf():
 
     c.showPage()
     page_num += 1
-    draw_page_bg(c); draw_sidebar(c, 2)
+    draw_page_bg(c); draw_sidebar(c, 3)
     y = PAGE_H - 18 * mm
     y = draw_section_title(c, "EXPERIENCE CONTINUED", y)
     y, page_num = draw_experience_item(c, DATA["experience"][3], y, page_num)
@@ -311,6 +318,21 @@ def set_cell_border(cell, color="FFFFFF", sz="4"):
         element.set(qn("w:color"), color)
 
 
+def remove_table_cell_margins(table):
+    tbl_pr = table._tbl.tblPr
+    tbl_cell_mar = tbl_pr.first_child_found_in("w:tblCellMar")
+    if tbl_cell_mar is None:
+        tbl_cell_mar = OxmlElement("w:tblCellMar")
+        tbl_pr.append(tbl_cell_mar)
+    for edge in ("top", "left", "bottom", "right"):
+        node = tbl_cell_mar.find(qn(f"w:{edge}"))
+        if node is None:
+            node = OxmlElement(f"w:{edge}")
+            tbl_cell_mar.append(node)
+        node.set(qn("w:w"), "0")
+        node.set(qn("w:type"), "dxa")
+
+
 def cell_para(cell, text, size=8.5, bold=False, italic=False, color="F4F6EF", align=None, before=0, after=3):
     p = cell.add_paragraph()
     p.paragraph_format.space_before = Pt(before)
@@ -328,13 +350,16 @@ def cell_para(cell, text, size=8.5, bold=False, italic=False, color="F4F6EF", al
 def build_docx():
     doc = Document()
     sec = doc.sections[0]
-    sec.top_margin = Inches(0.25); sec.bottom_margin = Inches(0.25)
-    sec.left_margin = Inches(0.25); sec.right_margin = Inches(0.25)
+    sec.page_width = Inches(8.27); sec.page_height = Inches(11.69)
+    sec.top_margin = Inches(0); sec.bottom_margin = Inches(0)
+    sec.left_margin = Inches(0); sec.right_margin = Inches(0)
+    sec.header_distance = Inches(0); sec.footer_distance = Inches(0)
     table = doc.add_table(rows=1, cols=2)
     table.alignment = WD_TABLE_ALIGNMENT.CENTER
     table.autofit = False
+    remove_table_cell_margins(table)
     side, main = table.rows[0].cells
-    side.width = Inches(2.45); main.width = Inches(4.95)
+    side.width = Inches(2.55); main.width = Inches(5.72)
     set_cell_shading(side, "243328"); set_cell_shading(main, "F6F5EF")
     set_cell_border(side, "243328"); set_cell_border(main, "F6F5EF")
     side.vertical_alignment = WD_CELL_VERTICAL_ALIGNMENT.TOP
