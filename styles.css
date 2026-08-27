@@ -191,6 +191,37 @@ body{
 .rule{ height: 1px; background: var(--rule); }
 .text{ margin: 0 0 10px; color: var(--muted); line-height: 1.65; }
 .text.compact{ line-height: 1.55; }
+.earlier-grid{
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+.earlier-card{
+  display: grid;
+  gap: 4px;
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid rgba(0,0,0,0.09);
+  background: linear-gradient(135deg, rgba(255,255,255,0.58), rgba(166,157,134,0.14));
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.62);
+}
+.earlier-card strong{
+  color: var(--ink);
+  font-size: 0.95rem;
+  line-height: 1.2;
+}
+.earlier-card span{
+  color: rgba(10,12,16,0.68);
+  font-size: 0.88rem;
+  line-height: 1.3;
+}
+.earlier-card em{
+  color: rgba(10,12,16,0.54);
+  font-size: 0.78rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 1.25;
+}
 .fit-grid{ display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 12px; }
 .fit-grid div{ padding: 13px 14px; border: 1px solid rgba(0,0,0,0.09); background: rgba(255,255,255,0.48); border-radius: 10px; }
 .fit-grid strong{ display: block; margin-bottom: 6px; }
@@ -215,7 +246,7 @@ body{
   .icon-grid{ grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .item-head{ grid-template-columns: 1fr; }
   .dates{ margin-top: 6px; }
-  .fit-grid{ grid-template-columns: 1fr; }
+  .fit-grid, .earlier-grid{ grid-template-columns: 1fr; }
   .download-stack{ grid-template-columns: 1fr; }
 }
 @media print{

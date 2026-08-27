@@ -191,18 +191,11 @@ def draw_sidebar(c: canvas.Canvas, page_num: int):
             y = para(c, esc(item), SIDE_TEXT, x, y, w)
         side_rule(c, y - 2 * mm); y -= 9 * mm
         y = para(c, "TECHNOLOGY", SIDE_TITLE, x, y, w)
-        cell_w = (w - 5 * mm) / 3
-        cell_h = 13.8 * mm
-        for idx, (abbr, label) in enumerate(TECH):
-            col = idx % 3
-            row = idx // 3
-            tx = x + col * (cell_w + 2.5 * mm)
-            ty = y - (row + 1) * cell_h
-            round_rect(c, tx, ty + 1.5 * mm, cell_w, cell_h - 2 * mm, 3 * mm, colors.Color(1, 1, 1, alpha=0.075), colors.Color(1, 1, 1, alpha=0.13), 0.5)
-            draw_tech_logo(c, label, tx, ty + 1.5 * mm, cell_w, cell_h - 2 * mm)
-            c.setFillColor(COLORS["side_muted"]); c.setFont("Helvetica", 4.8)
-            c.drawCentredString(tx + cell_w / 2, ty + 3.0 * mm, label[:17])
-        y -= math.ceil(len(TECH) / 3) * cell_h + 4 * mm
+        # Keep the PDF sidebar clean: no icon/box grid, just readable ATS-safe text.
+        tech_labels = [label for _, label in TECH]
+        for i in range(0, len(tech_labels), 2):
+            y = para(c, " • ".join(tech_labels[i:i + 2]), SIDE_MUTED, x, y, w)
+        y -= 2 * mm
         side_rule(c, y); y -= 7 * mm
         y = para(c, "SKILLS", SIDE_TITLE, x, y, w)
         y = draw_chips(c, CHIPS[:12], x, y, w)
