@@ -85,11 +85,8 @@ body{
   justify-items: center;
   align-content: start;
   gap: 6px;
-  min-height: 82px;
-  padding: 10px 6px;
-  border-radius: 10px;
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(255,255,255,0.10);
+  min-height: 58px;
+  padding: 4px 2px;
   text-align: center;
   overflow: hidden;
 }
@@ -107,12 +104,11 @@ body{
 .tech-mark{
   width: 34px; height: 34px; border-radius: 9px;
   display: grid; place-items: center;
-  background: linear-gradient(135deg, rgba(247,246,241,0.95), rgba(166,157,134,0.94));
-  color: #20221d;
+  color: rgba(255,255,255,0.92);
   font-weight: 800;
   font-size: 0.62rem;
   letter-spacing: -0.03em;
-  box-shadow: 0 6px 16px rgba(0,0,0,0.24);
+  text-shadow: 0 6px 12px rgba(0,0,0,0.30);
 }
 .icon span:last-child{ font-size: 0.75rem; color: rgba(255,255,255,0.82); line-height: 1.2; }
 

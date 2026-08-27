@@ -153,10 +153,10 @@ def side_rule(c, y):
     c.line(12 * mm, y, SIDE_W - 12 * mm, y)
 
 
-def draw_tech_logo(c: canvas.Canvas, label: str, card_x: float, card_y: float, card_w: float, card_h: float):
-    """Draw product logo/mark directly on the card, without a secondary surrounding box."""
-    cx = card_x + card_w / 2
-    icon_cy = card_y + card_h * 0.62
+def draw_tech_logo(c: canvas.Canvas, label: str, cell_x: float, cell_y: float, cell_w: float, cell_h: float):
+    """Draw product logo/mark only — no surrounding card or inner box."""
+    cx = cell_x + cell_w / 2
+    icon_cy = cell_y + cell_h * 0.58
     icon = TECH_ICONS.get(label)
     if icon and (ASSETS / "icons" / icon).exists():
         size = 7.8 * mm
@@ -191,10 +191,7 @@ def draw_sidebar(c: canvas.Canvas, page_num: int):
             row = idx // 3
             tx = x + col * (cell_w + 2.5 * mm)
             ty = y - (row + 1) * cell_h
-            card_y = ty + 1.5 * mm
-            card_h = cell_h - 2 * mm
-            round_rect(c, tx, card_y, cell_w, card_h, 3 * mm, colors.Color(1, 1, 1, alpha=0.075), colors.Color(1, 1, 1, alpha=0.13), 0.5)
-            draw_tech_logo(c, label, tx, card_y, cell_w, card_h)
+            draw_tech_logo(c, label, tx, ty, cell_w, cell_h)
             c.setFillColor(COLORS["side_muted"]); c.setFont("Helvetica", 4.8)
             c.drawCentredString(tx + cell_w / 2, ty + 3.0 * mm, label[:17])
         y -= math.ceil(len(TECH) / 3) * cell_h + 4 * mm
