@@ -15,8 +15,7 @@ from reportlab.platypus import Paragraph
 from reportlab.pdfgen import canvas
 
 from docx import Document
-from docx.enum.section import WD_SECTION_START
-from docx.enum.table import WD_CELL_VERTICAL_ALIGNMENT, WD_TABLE_ALIGNMENT
+from docx.enum.table import WD_CELL_VERTICAL_ALIGNMENT, WD_ROW_HEIGHT_RULE, WD_TABLE_ALIGNMENT
 from docx.enum.text import WD_ALIGN_PARAGRAPH
 from docx.oxml import OxmlElement
 from docx.oxml.ns import qn
@@ -112,7 +111,7 @@ def para(c: canvas.Canvas, text: str, style: ParagraphStyle, x: float, y: float,
     return y - h - style.spaceAfter
 
 
-def round_rect(c, x, y, w, h, radius, fill, stroke=None, lw=1):
+def round_rect(c, x, y, w, h, radius, fill, stroke=None, lw=1.0):
     c.setFillColor(fill)
     if stroke:
         c.setStrokeColor(stroke); c.setLineWidth(lw)
@@ -154,23 +153,26 @@ def side_rule(c, y):
     c.line(12 * mm, y, SIDE_W - 12 * mm, y)
 
 
-def draw_tech_logo(c: canvas.Canvas, label: str, cx: float, top_y: float):
-    """Draw product logo when a bitmap asset exists; otherwise draw a clean wordmark."""
+def draw_tech_logo(c: canvas.Canvas, label: str, card_x: float, card_y: float, card_w: float, card_h: float):
+    """Draw product logo centred inside its rounded technology card."""
+    cx = card_x + card_w / 2
+    icon_cy = card_y + card_h * 0.61
     icon = TECH_ICONS.get(label)
     if icon and (ASSETS / "icons" / icon).exists():
-        size = 8.4 * mm
+        size = 6.8 * mm
+        bg = size + 1.8 * mm
         c.setFillColor(colors.Color(1, 1, 1, alpha=0.92))
-        c.roundRect(cx - size / 2 - 0.9 * mm, top_y - size - 0.9 * mm, size + 1.8 * mm, size + 1.8 * mm, 2.0 * mm, fill=1, stroke=0)
-        c.drawImage(str(ASSETS / "icons" / icon), cx - size / 2, top_y - size, width=size, height=size, preserveAspectRatio=True, mask="auto")
+        c.roundRect(cx - bg / 2, icon_cy - bg / 2, bg, bg, 2.0 * mm, fill=1, stroke=0)
+        c.drawImage(str(ASSETS / "icons" / icon), cx - size / 2, icon_cy - size / 2, width=size, height=size, preserveAspectRatio=True, anchor="c", mask="auto")
         return
     mark = BRAND_MARKS.get(label, label[:4].upper())
-    w = min(max(c.stringWidth(mark, "Helvetica-Bold", 4.3) + 3.0 * mm, 8.8 * mm), 15.0 * mm)
-    h = 7.2 * mm
+    w = min(max(c.stringWidth(mark, "Helvetica-Bold", 4.3) + 3.0 * mm, 7.8 * mm), 13.2 * mm)
+    h = 5.8 * mm
     c.setFillColor(colors.Color(1, 1, 1, alpha=0.88))
-    c.roundRect(cx - w / 2, top_y - h, w, h, 1.8 * mm, fill=1, stroke=0)
+    c.roundRect(cx - w / 2, icon_cy - h / 2, w, h, 1.8 * mm, fill=1, stroke=0)
     c.setFillColor(COLORS["ink"])
     c.setFont("Helvetica-Bold", 3.9 if len(mark) > 4 else 4.8)
-    c.drawCentredString(cx, top_y - 4.8 * mm, mark)
+    c.drawCentredString(cx, icon_cy - 1.35 * mm, mark)
 
 
 def draw_sidebar(c: canvas.Canvas, page_num: int):
@@ -197,9 +199,9 @@ def draw_sidebar(c: canvas.Canvas, page_num: int):
             tx = x + col * (cell_w + 2.5 * mm)
             ty = y - (row + 1) * cell_h
             round_rect(c, tx, ty + 1.5 * mm, cell_w, cell_h - 2 * mm, 3 * mm, colors.Color(1, 1, 1, alpha=0.075), colors.Color(1, 1, 1, alpha=0.13), 0.5)
-            draw_tech_logo(c, label, tx + cell_w / 2, ty + 15.2 * mm)
+            draw_tech_logo(c, label, tx, ty + 1.5 * mm, cell_w, cell_h - 2 * mm)
             c.setFillColor(COLORS["side_muted"]); c.setFont("Helvetica", 4.8)
-            c.drawCentredString(tx + cell_w / 2, ty + 4.3 * mm, label[:17])
+            c.drawCentredString(tx + cell_w / 2, ty + 3.0 * mm, label[:17])
         y -= math.ceil(len(TECH) / 3) * cell_h + 4 * mm
         side_rule(c, y); y -= 7 * mm
         y = para(c, "SKILLS", SIDE_TITLE, x, y, w)
@@ -295,6 +297,18 @@ def draw_earlier_career_grid(c: canvas.Canvas, items: list[str], x: float, y: fl
     return y - rows * (card_h + 2.2 * mm) - 2 * mm
 
 
+def draw_page_three_footer(c: canvas.Canvas):
+    panel_x = MAIN_X
+    panel_y = 22 * mm
+    panel_h = 32 * mm
+    round_rect(c, panel_x, panel_y, MAIN_W, panel_h, 2.5 * mm, colors.HexColor("#ebe8dd"), colors.HexColor("#ddd6c4"), 0.6)
+    c.setFillColor(COLORS["ink"]); c.setFont("Times-Bold", 10)
+    c.drawString(panel_x + 5 * mm, panel_y + panel_h - 8 * mm, "SERVICE DELIVERY • SYSTEMS • CHANGE")
+    c.setFillColor(COLORS["muted"]); c.setFont("Helvetica", 6.5)
+    c.drawString(panel_x + 5 * mm, panel_y + panel_h - 15 * mm, "Practical IT leadership across BAU support, infrastructure, business systems and supplier coordination.")
+    c.drawString(panel_x + 5 * mm, panel_y + panel_h - 21 * mm, "Hands-on delivery with clear stakeholder communication and steady technology change.")
+
+
 def ensure_space(c, y, needed, page_num):
     if y - needed < 18 * mm:
         c.showPage()
@@ -361,6 +375,7 @@ def build_pdf():
     y -= 5 * mm
     y = draw_section_title(c, "CERTIFICATION", y)
     para(c, esc(", ".join(DATA["certifications"])), BODY, MAIN_X, y, MAIN_W)
+    draw_page_three_footer(c)
     c.save()
 
 
@@ -389,18 +404,33 @@ def set_cell_border(cell, color="FFFFFF", sz="4"):
         element.set(qn("w:color"), color)
 
 
-def remove_table_cell_margins(table):
+def set_table_cell_margins(table, top=120, left=180, bottom=120, right=180):
     tbl_pr = table._tbl.tblPr
     tbl_cell_mar = tbl_pr.first_child_found_in("w:tblCellMar")
     if tbl_cell_mar is None:
         tbl_cell_mar = OxmlElement("w:tblCellMar")
         tbl_pr.append(tbl_cell_mar)
-    for edge in ("top", "left", "bottom", "right"):
+    for edge, value in (("top", top), ("left", left), ("bottom", bottom), ("right", right)):
         node = tbl_cell_mar.find(qn(f"w:{edge}"))
         if node is None:
             node = OxmlElement(f"w:{edge}")
             tbl_cell_mar.append(node)
-        node.set(qn("w:w"), "0")
+        node.set(qn("w:w"), str(value))
+        node.set(qn("w:type"), "dxa")
+
+
+def set_cell_margins(cell, top=120, left=220, bottom=120, right=220):
+    tc_pr = cell._tc.get_or_add_tcPr()
+    tc_mar = tc_pr.first_child_found_in("w:tcMar")
+    if tc_mar is None:
+        tc_mar = OxmlElement("w:tcMar")
+        tc_pr.append(tc_mar)
+    for edge, value in (("top", top), ("left", left), ("bottom", bottom), ("right", right)):
+        node = tc_mar.find(qn(f"w:{edge}"))
+        if node is None:
+            node = OxmlElement(f"w:{edge}")
+            tc_mar.append(node)
+        node.set(qn("w:w"), str(value))
         node.set(qn("w:type"), "dxa")
 
 
@@ -428,9 +458,13 @@ def build_docx():
     table = doc.add_table(rows=1, cols=2)
     table.alignment = WD_TABLE_ALIGNMENT.CENTER
     table.autofit = False
-    remove_table_cell_margins(table)
+    set_table_cell_margins(table, top=120, left=180, bottom=120, right=180)
+    table.rows[0].height = Inches(11.69)
+    table.rows[0].height_rule = WD_ROW_HEIGHT_RULE.AT_LEAST
     side, main = table.rows[0].cells
     side.width = Inches(2.55); main.width = Inches(5.72)
+    set_cell_margins(side, top=180, left=220, bottom=180, right=180)
+    set_cell_margins(main, top=180, left=280, bottom=180, right=300)
     set_cell_shading(side, "243328"); set_cell_shading(main, "F6F5EF")
     set_cell_border(side, "243328"); set_cell_border(main, "F6F5EF")
     side.vertical_alignment = WD_CELL_VERTICAL_ALIGNMENT.TOP
@@ -495,6 +529,10 @@ def build_docx():
         r.font.name = "Aptos"; r.font.size = Pt(7.2); r.font.color.rgb = RGBColor.from_string("595D55")
     h("CERTIFICATION")
     mpara(", ".join(DATA["certifications"]), 7.8)
+    p = main.add_paragraph()
+    p.paragraph_format.space_after = Pt(220)
+    p = side.add_paragraph()
+    p.paragraph_format.space_after = Pt(220)
     doc.save(DOCX_OUT)
 
 
