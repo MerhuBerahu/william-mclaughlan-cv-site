@@ -22,3 +22,7 @@ Then open `http://127.0.0.1:8080/`.
 ## GitHub Pages
 
 This repo is ready to publish from the `main` branch root using GitHub Pages.
+
+## Icon attribution
+
+Selected product/app icons are sourced from https://github.com/aaronparker/icons.

@@ -91,6 +91,12 @@ body{
   border: 1px solid rgba(255,255,255,0.10);
   text-align: center;
 }
+.icon img{
+  width: 34px;
+  height: 34px;
+  object-fit: contain;
+  filter: drop-shadow(0 6px 12px rgba(0,0,0,0.30));
+}
 .tech-mark{
   width: 34px; height: 34px; border-radius: 9px;
   display: grid; place-items: center;
