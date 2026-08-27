@@ -80,30 +80,30 @@ body{
 .side a[href^="mailto:"]{ font-size: 0.82rem; letter-spacing: -0.02em; }
 .side a:hover{ border-bottom-color: rgba(255,255,255,0.48); }
 
-.icon-grid{ display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+.icon-grid{ display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px 10px; }
 .icon{
   display: grid;
   justify-items: center;
   align-content: start;
-  gap: 6px;
-  min-height: 58px;
-  padding: 4px 2px;
+  gap: 4px;
+  min-height: 52px;
+  padding: 3px 2px;
   text-align: center;
   overflow: hidden;
 }
 .icon img{
   display: block;
-  width: 34px !important;
-  height: 34px !important;
-  max-width: 34px !important;
-  max-height: 34px !important;
+  width: 31px !important;
+  height: 31px !important;
+  max-width: 31px !important;
+  max-height: 31px !important;
   object-fit: contain;
   object-position: center;
   flex: 0 0 auto;
   filter: drop-shadow(0 6px 12px rgba(0,0,0,0.30));
 }
 .tech-mark{
-  width: 34px; height: 34px; border-radius: 9px;
+  width: 31px; height: 31px; border-radius: 8px;
   display: grid; place-items: center;
   color: rgba(255,255,255,0.92);
   font-weight: 800;
@@ -111,7 +111,7 @@ body{
   letter-spacing: -0.03em;
   text-shadow: 0 6px 12px rgba(0,0,0,0.30);
 }
-.icon span:last-child{ font-size: 0.75rem; color: rgba(255,255,255,0.82); line-height: 1.2; }
+.icon span:last-child{ font-size: 0.68rem; color: rgba(255,255,255,0.82); line-height: 1.15; }
 
 .chip-group{ display: flex; flex-wrap: wrap; gap: 8px; }
 .chip{

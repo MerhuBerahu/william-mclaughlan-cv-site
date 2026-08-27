@@ -67,6 +67,9 @@ TECH = [
     ("TEAMS", "Teams"), ("CTX", "Citrix"), ("MIME", "Mimecast"),
     ("EX", "Exchange"), ("RDP", "Remote"), ("TV", "TeamViewer"),
     ("FORT", "Fortinet"), ("ITIL", "ITIL v4"),
+    ("PY", "Python"), ("PS", "PowerShell"), ("DB", "Databricks"),
+    ("ADO", "DevOps"), ("FS", "Freshservice"), ("CB", "Chargebee"),
+    ("WP", "WordPress"), ("UNI", "UniFi"), ("GH", "GitHub"),
 ]
 TECH_ICONS = {
     "Microsoft 365": "Microsoft365.png",
@@ -81,7 +84,18 @@ TECH_ICONS = {
     "Mimecast": "Mimecast.png",
     "Exchange": "Microsoft-Outlook.png",
     "Remote": "Microsoft-RemoteDesktop.png",
+    "TeamViewer": "TeamViewer.png",
+    "Fortinet": "Fortinet.png",
     "Defender": "Microsoft-Defender.png",
+    "Python": "Python.png",
+    "PowerShell": "PowerShell.png",
+    "Databricks": "Databricks.png",
+    "DevOps": "AzureDevOps.png",
+    "Freshservice": "Freshservice.png",
+    "Chargebee": "Chargebee.png",
+    "WordPress": "WordPress.png",
+    "UniFi": "UniFi.png",
+    "GitHub": "GitHub.png",
 }
 BRAND_MARKS = {
     "JAMF": "jamf",
@@ -159,7 +173,7 @@ def draw_tech_logo(c: canvas.Canvas, label: str, cell_x: float, cell_y: float, c
     icon_cy = cell_y + cell_h * 0.58
     icon = TECH_ICONS.get(label)
     if icon and (ASSETS / "icons" / icon).exists():
-        size = 7.8 * mm
+        size = 6.6 * mm
         c.drawImage(str(ASSETS / "icons" / icon), cx - size / 2, icon_cy - size / 2, width=size, height=size, preserveAspectRatio=True, anchor="c", mask="auto")
         return
     mark = BRAND_MARKS.get(label, label[:4].upper())
@@ -185,16 +199,16 @@ def draw_sidebar(c: canvas.Canvas, page_num: int):
         side_rule(c, y - 2 * mm); y -= 9 * mm
         y = para(c, "TECHNOLOGY", SIDE_TITLE, x, y, w)
         cell_w = (w - 5 * mm) / 3
-        cell_h = 13.8 * mm
+        cell_h = 10.8 * mm
         for idx, (abbr, label) in enumerate(TECH):
             col = idx % 3
             row = idx // 3
             tx = x + col * (cell_w + 2.5 * mm)
             ty = y - (row + 1) * cell_h
             draw_tech_logo(c, label, tx, ty, cell_w, cell_h)
-            c.setFillColor(COLORS["side_muted"]); c.setFont("Helvetica", 4.8)
-            c.drawCentredString(tx + cell_w / 2, ty + 3.0 * mm, label[:17])
-        y -= math.ceil(len(TECH) / 3) * cell_h + 4 * mm
+            c.setFillColor(COLORS["side_muted"]); c.setFont("Helvetica", 4.0)
+            c.drawCentredString(tx + cell_w / 2, ty + 2.4 * mm, label[:17])
+        y -= math.ceil(len(TECH) / 3) * cell_h + 3 * mm
         side_rule(c, y); y -= 7 * mm
         y = para(c, "SKILLS", SIDE_TITLE, x, y, w)
         y = draw_chips(c, CHIPS[:12], x, y, w)
