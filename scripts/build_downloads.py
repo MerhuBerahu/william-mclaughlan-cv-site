@@ -53,10 +53,10 @@ COLORS = {
 
 BODY = ParagraphStyle("body", fontName="Helvetica", fontSize=7.7, leading=9.45, textColor=COLORS["muted"], spaceAfter=3)
 BULLET = ParagraphStyle("bullet", fontName="Helvetica", fontSize=7.0, leading=8.5, textColor=colors.HexColor("#353a33"), leftIndent=9, firstLineIndent=-7, spaceAfter=2.0)
-TITLE = ParagraphStyle("title", fontName="Times-Bold", fontSize=11.0, leading=13, textColor=COLORS["ink"], spaceAfter=3)
+TITLE = ParagraphStyle("title", fontName="Helvetica-Bold", fontSize=10.5, leading=12.5, textColor=COLORS["ink"], spaceAfter=3)
 ROLE = ParagraphStyle("role", fontName="Helvetica-Bold", fontSize=8.0, leading=9.8, textColor=COLORS["ink"], spaceAfter=1)
 SUB = ParagraphStyle("sub", fontName="Helvetica", fontSize=6.8, leading=8.2, textColor=COLORS["muted"], spaceAfter=4)
-SIDE_TITLE = ParagraphStyle("side_title", fontName="Times-Bold", fontSize=11.5, leading=13, textColor=COLORS["side_text"], spaceAfter=6)
+SIDE_TITLE = ParagraphStyle("side_title", fontName="Helvetica-Bold", fontSize=9.2, leading=11, textColor=COLORS["side_text"], spaceAfter=6)
 SIDE_TEXT = ParagraphStyle("side_text", fontName="Helvetica", fontSize=7.2, leading=8.7, textColor=COLORS["side_text"], spaceAfter=3)
 SIDE_MUTED = ParagraphStyle("side_muted", fontName="Helvetica", fontSize=6.8, leading=8.2, textColor=COLORS["side_muted"], spaceAfter=4)
 
@@ -234,7 +234,7 @@ def draw_hero(c, y):
     h = 33 * mm
     round_rect(c, x, y - h, MAIN_W, h, 2.5 * mm, colors.HexColor("#ebe8dd"), colors.HexColor("#ddd6c4"), 0.7)
     c.setFillColor(COLORS["ink"])
-    c.setFont("Times-Bold", 22)
+    c.setFont("Helvetica-Bold", 19.5)
     c.drawCentredString(x + MAIN_W / 2, y - 13 * mm, DATA["name"].upper())
     c.setStrokeColor(colors.HexColor("#777366")); c.setLineWidth(1.1)
     c.line(x + MAIN_W / 2 - 34 * mm, y - 17.5 * mm, x + MAIN_W / 2 + 34 * mm, y - 17.5 * mm)
@@ -244,10 +244,10 @@ def draw_hero(c, y):
 
 
 def draw_section_title(c, title, y):
-    c.setFillColor(COLORS["ink"]); c.setFont("Times-Bold", 13)
+    c.setFillColor(COLORS["ink"]); c.setFont("Helvetica-Bold", 12)
     c.drawString(MAIN_X, y, title)
     c.setStrokeColor(COLORS["rule"]); c.setLineWidth(0.8)
-    c.line(MAIN_X + c.stringWidth(title, "Times-Bold", 13) + 6 * mm, y + 2, MAIN_X + MAIN_W, y + 2)
+    c.line(MAIN_X + c.stringWidth(title, "Helvetica-Bold", 12) + 6 * mm, y + 2, MAIN_X + MAIN_W, y + 2)
     return y - 6 * mm
 
 
@@ -294,7 +294,7 @@ def draw_page_three_footer(c: canvas.Canvas):
     panel_y = 22 * mm
     panel_h = 32 * mm
     round_rect(c, panel_x, panel_y, MAIN_W, panel_h, 2.5 * mm, colors.HexColor("#ebe8dd"), colors.HexColor("#ddd6c4"), 0.6)
-    c.setFillColor(COLORS["ink"]); c.setFont("Times-Bold", 10)
+    c.setFillColor(COLORS["ink"]); c.setFont("Helvetica-Bold", 9.5)
     c.drawString(panel_x + 5 * mm, panel_y + panel_h - 8 * mm, "SERVICE DELIVERY • SYSTEMS • CHANGE")
     c.setFillColor(COLORS["muted"]); c.setFont("Helvetica", 6.5)
     c.drawString(panel_x + 5 * mm, panel_y + panel_h - 15 * mm, "Practical IT leadership across BAU support, infrastructure, business systems and supplier coordination.")
