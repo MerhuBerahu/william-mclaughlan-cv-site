@@ -69,6 +69,28 @@ TECH = [
     ("EX", "Exchange"), ("RDP", "Remote"), ("TV", "TeamViewer"),
     ("FORT", "Fortinet"), ("ITIL", "ITIL v4"),
 ]
+TECH_ICONS = {
+    "Microsoft 365": "Microsoft365.png",
+    "Azure": "Microsoft-Azure.png",
+    "Windows": "Microsoft-WindowsLogoColour.png",
+    "Active Directory": "Microsoft-Azure.png",
+    "Intune": "Microsoft-IntuneCompanyPortal.png",
+    "Zoom": "Zoom.png",
+    "Dynamics 365": "Microsoft-Dynamics365.png",
+    "Teams": "Microsoft-Teams.png",
+    "Citrix": "Citrix-WorkspaceApp.png",
+    "Mimecast": "Mimecast.png",
+    "Exchange": "Microsoft-Outlook.png",
+    "Remote": "Microsoft-RemoteDesktop.png",
+    "Defender": "Microsoft-Defender.png",
+}
+BRAND_MARKS = {
+    "JAMF": "jamf",
+    "Roundsman": "RM",
+    "TeamViewer": "TV",
+    "Fortinet": "FORTINET",
+    "ITIL v4": "ITIL",
+}
 CHIPS = [
     "Service delivery", "Infrastructure", "Cyber security", "Microsoft 365 admin",
     "Entra ID / AD", "GPOs", "MDM: Intune / SCCM / JAMF", "Hybrid Exchange",
@@ -132,6 +154,25 @@ def side_rule(c, y):
     c.line(12 * mm, y, SIDE_W - 12 * mm, y)
 
 
+def draw_tech_logo(c: canvas.Canvas, label: str, cx: float, top_y: float):
+    """Draw product logo when a bitmap asset exists; otherwise draw a clean wordmark."""
+    icon = TECH_ICONS.get(label)
+    if icon and (ASSETS / "icons" / icon).exists():
+        size = 8.4 * mm
+        c.setFillColor(colors.Color(1, 1, 1, alpha=0.92))
+        c.roundRect(cx - size / 2 - 0.9 * mm, top_y - size - 0.9 * mm, size + 1.8 * mm, size + 1.8 * mm, 2.0 * mm, fill=1, stroke=0)
+        c.drawImage(str(ASSETS / "icons" / icon), cx - size / 2, top_y - size, width=size, height=size, preserveAspectRatio=True, mask="auto")
+        return
+    mark = BRAND_MARKS.get(label, label[:4].upper())
+    w = min(max(c.stringWidth(mark, "Helvetica-Bold", 4.3) + 3.0 * mm, 8.8 * mm), 15.0 * mm)
+    h = 7.2 * mm
+    c.setFillColor(colors.Color(1, 1, 1, alpha=0.88))
+    c.roundRect(cx - w / 2, top_y - h, w, h, 1.8 * mm, fill=1, stroke=0)
+    c.setFillColor(COLORS["ink"])
+    c.setFont("Helvetica-Bold", 3.9 if len(mark) > 4 else 4.8)
+    c.drawCentredString(cx, top_y - 4.8 * mm, mark)
+
+
 def draw_sidebar(c: canvas.Canvas, page_num: int):
     x = 12 * mm
     w = SIDE_W - 24 * mm
@@ -155,10 +196,8 @@ def draw_sidebar(c: canvas.Canvas, page_num: int):
             row = idx // 3
             tx = x + col * (cell_w + 2.5 * mm)
             ty = y - (row + 1) * cell_h
-            round_rect(c, tx, ty + 1.5 * mm, cell_w, cell_h - 2 * mm, 3 * mm, colors.Color(1, 1, 1, alpha=0.06), colors.Color(1, 1, 1, alpha=0.10), 0.5)
-            round_rect(c, tx + (cell_w - 8 * mm) / 2, ty + 7.6 * mm, 8 * mm, 8 * mm, 2 * mm, COLORS["accent"])
-            c.setFillColor(COLORS["ink"]); c.setFont("Helvetica-Bold", 3.9 if len(abbr) > 4 else 4.8)
-            c.drawCentredString(tx + cell_w / 2, ty + 10.6 * mm, abbr)
+            round_rect(c, tx, ty + 1.5 * mm, cell_w, cell_h - 2 * mm, 3 * mm, colors.Color(1, 1, 1, alpha=0.075), colors.Color(1, 1, 1, alpha=0.13), 0.5)
+            draw_tech_logo(c, label, tx + cell_w / 2, ty + 15.2 * mm)
             c.setFillColor(COLORS["side_muted"]); c.setFont("Helvetica", 4.8)
             c.drawCentredString(tx + cell_w / 2, ty + 4.3 * mm, label[:17])
         y -= math.ceil(len(TECH) / 3) * cell_h + 4 * mm
@@ -224,6 +263,38 @@ def fit_para_height(text, style, w):
     return h + style.spaceAfter
 
 
+def split_earlier_career(item: str):
+    parts = [p.strip() for p in item.split(" — ")]
+    if len(parts) >= 3:
+        return parts[0], " — ".join(parts[1:-1]), parts[-1]
+    if len(parts) == 2:
+        return parts[0], "", parts[1]
+    return item, "", ""
+
+
+def draw_earlier_career_grid(c: canvas.Canvas, items: list[str], x: float, y: float, w: float) -> float:
+    cols = 2
+    gap = 4 * mm
+    card_w = (w - gap) / cols
+    card_h = 12.8 * mm
+    for idx, item in enumerate(items):
+        col = idx % cols
+        row = idx // cols
+        cx = x + col * (card_w + gap)
+        cy = y - row * (card_h + 2.2 * mm) - card_h
+        round_rect(c, cx, cy, card_w, card_h, 2 * mm, colors.HexColor("#f0ede2"), colors.HexColor("#ded7c7"), 0.45)
+        company, role, dates = split_earlier_career(item)
+        c.setFillColor(COLORS["ink"]); c.setFont("Helvetica-Bold", 6.2)
+        c.drawString(cx + 2.6 * mm, cy + 8.3 * mm, company[:31])
+        c.setFillColor(COLORS["muted"]); c.setFont("Helvetica", 5.7)
+        role_text = role[:34] if role else "Earlier education / transition"
+        c.drawString(cx + 2.6 * mm, cy + 5.0 * mm, role_text)
+        c.setFillColor(colors.HexColor("#777366")); c.setFont("Helvetica-Bold", 5.2)
+        c.drawString(cx + 2.6 * mm, cy + 2.1 * mm, dates[:33])
+    rows = math.ceil(len(items) / cols)
+    return y - rows * (card_h + 2.2 * mm) - 2 * mm
+
+
 def ensure_space(c, y, needed, page_num):
     if y - needed < 18 * mm:
         c.showPage()
@@ -283,11 +354,11 @@ def build_pdf():
     y = draw_section_title(c, "EXPERIENCE CONTINUED", y)
     y, page_num = draw_experience_item(c, DATA["experience"][3], y, page_num)
     y -= 7 * mm
-    y, page_num = ensure_space(c, y, 32 * mm, page_num)
+    earlier_needed = 66 * mm
+    y, page_num = ensure_space(c, y, earlier_needed, page_num)
     y = draw_section_title(c, "EARLIER CAREER", y)
-    earlier = " · ".join([e.replace(" — ", " — ") for e in DATA["earlier_career"]])
-    y = para(c, esc(earlier), BODY, MAIN_X, y, MAIN_W)
-    y -= 8 * mm
+    y = draw_earlier_career_grid(c, DATA["earlier_career"], MAIN_X, y, MAIN_W)
+    y -= 5 * mm
     y = draw_section_title(c, "CERTIFICATION", y)
     para(c, esc(", ".join(DATA["certifications"])), BODY, MAIN_X, y, MAIN_W)
     c.save()
@@ -413,7 +484,15 @@ def build_docx():
         for b in exp["bullets"]:
             bullet(b)
     h("EARLIER CAREER")
-    mpara(" · ".join(DATA["earlier_career"]), 7.4)
+    for item in DATA["earlier_career"]:
+        company, role, dates = split_earlier_career(item)
+        p = main.add_paragraph()
+        p.paragraph_format.space_after = Pt(1.5)
+        r = p.add_run(company)
+        r.bold = True; r.font.name = "Aptos"; r.font.size = Pt(7.6); r.font.color.rgb = RGBColor.from_string("151813")
+        detail = f" — {role} — {dates}" if role else f" — {dates}"
+        r = p.add_run(detail)
+        r.font.name = "Aptos"; r.font.size = Pt(7.2); r.font.color.rgb = RGBColor.from_string("595D55")
     h("CERTIFICATION")
     mpara(", ".join(DATA["certifications"]), 7.8)
     doc.save(DOCX_OUT)
