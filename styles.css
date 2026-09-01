@@ -256,7 +256,7 @@ body{
   .fit-grid, .earlier-grid{ grid-template-columns: 1fr; }
   .download-stack{ grid-template-columns: 1fr; }
 }
-@page{ size: A4; margin: 10mm; }
+@page{ size: A4; margin: 16mm 10mm 14mm; }
 
 @media print{
   *{ -webkit-print-color-adjust: economy; print-color-adjust: economy; }
@@ -264,7 +264,7 @@ body{
   body{ background: #fff !important; color: #111 !important; }
   .page{ width: 100%; margin: 0; }
   .cv{ box-shadow: none; border-radius: 0; min-height: auto; border: 0; }
-  .hero-actions, .download-stack{ display: none !important; }
+  .hero-actions, .download-stack, .download-block{ display: none !important; }
   .side,
   .main,
   .hero,
@@ -311,6 +311,10 @@ body{
   .side-block{ padding: 10px 0; margin-top: 6px; }
   .block{ margin-top: 12px; break-inside: avoid; }
   .item{ break-inside: avoid; padding: 9px 0; }
+  .block-title, .item-head{ break-after: avoid; page-break-after: avoid; }
+  h1, h2, h3{ break-after: avoid; page-break-after: avoid; }
+  p, li{ orphans: 3; widows: 3; }
+  .bullets li{ break-inside: avoid; page-break-inside: avoid; }
   .earlier-card{ break-inside: avoid; }
   .text{ line-height: 1.48; }
   .bullets{ line-height: 1.38; }
