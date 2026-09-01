@@ -157,6 +157,8 @@ body{
   border-color: rgba(255,255,255,0.34) !important;
 }
 
+.print-outside-block{ display: none; }
+
 .main{ background: var(--paper); color: var(--ink); padding: 24px 28px; }
 .hero{
   text-align: center;
@@ -264,20 +266,25 @@ body{
   body{ background: #fff !important; color: #111 !important; font-size: 10.5pt; }
   .page{ width: 100%; margin: 0; }
   .cv{
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) 118px;
-    gap: 8px 16px;
+    display: block;
     box-shadow: none;
     border-radius: 0;
     min-height: auto;
     border: 0;
     overflow: visible;
   }
-  .side{ display: contents; }
-  .main{
-    grid-column: 1 / -1;
-    grid-row: 2;
+  .side{
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 104px;
+    gap: 6px 16px;
     padding: 0 !important;
+    margin: 0 0 8px !important;
+    border: 0 !important;
+  }
+  .main{
+    display: block;
+    padding: 0 !important;
+    margin: 0 !important;
     background: #fff !important;
   }
   .avatar-wrap{
@@ -287,7 +294,7 @@ body{
     align-items: start;
     margin: 0;
   }
-  .avatar{ width: 104px; height: 104px; border: 1px solid #777; }
+  .avatar{ width: 94px; height: 94px; border: 1px solid #777; }
   .contact-block{
     grid-column: 1;
     grid-row: 1;
@@ -304,23 +311,24 @@ body{
   .download-block,
   .technology-block,
   .skills-block,
+  .outside-block,
   .footer{ display: none !important; }
-  .outside-block{
-    grid-column: 1 / -1;
-    grid-row: 3;
+  .print-outside-block{
+    display: block !important;
     margin-top: 10px !important;
     padding-top: 8px !important;
     border-top: 1px solid #ccc !important;
     break-inside: avoid;
   }
-  .outside-block .tight{ font-size: 9.5pt; }
+  .print-outside-block .tight{ font-size: 9.5pt; }
   .side,
   .main,
   .hero,
   .earlier-card,
   .fit-grid div,
   .contact-ico,
-  .avatar{
+  .avatar,
+  .print-outside-block{
     background: #fff !important;
     background-image: none !important;
     color: #111 !important;
@@ -341,13 +349,13 @@ body{
   .side a{ border-bottom: 0; text-decoration: none; }
   .side a[href^="mailto:"]{ font-size: 9.2pt; }
   .side-title{ margin-bottom: 6px; font-size: 9.5pt; }
-  .hero{ border: 1px solid #ccc; padding: 9px 12px 7px; margin: 2px 0 8px; text-align: center; }
+  .hero{ border: 1px solid #ccc; padding: 9px 12px 7px; margin: 0 0 8px; text-align: center; break-after: avoid; }
   .hero-name{ font-size: 20pt; letter-spacing: 0.04em; }
   .hero-line{ background: #555; width: 180px; margin: 7px auto 0; }
   .chip,
   .earlier-card,
   .fit-grid div{ border-color: #ccc !important; }
-  .block{ margin-top: 10px; break-inside: avoid; }
+  .block{ margin-top: 10px; break-inside: auto; }
   .block-title{ margin: 8px 0 7px; break-after: avoid; page-break-after: avoid; }
   .block-title h2{ font-size: 13pt; }
   .item{ break-inside: avoid; padding: 7px 0; }
