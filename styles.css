@@ -146,6 +146,11 @@ body{
   line-height: 1;
   text-decoration: none;
   box-shadow: inset 0 1px 0 rgba(255,255,255,0.08);
+  font-family: inherit;
+}
+.download.print-trigger{
+  grid-column: 1 / -1;
+  cursor: pointer;
 }
 .download:hover{
   background: rgba(255,255,255,0.16);
@@ -171,7 +176,8 @@ body{
 .hero-line{ width: 220px; height: 2px; background: rgba(0,0,0,0.45); margin: 10px auto 12px; }
 .hero-role{ margin: 0 0 12px; letter-spacing: 0.16em; font-size: 0.92rem; color: rgba(0,0,0,0.66); line-height: 1.5; }
 .hero-actions{ display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; }
-.hero-actions a{
+.hero-actions a,
+.hero-actions button{
   color: rgba(0,0,0,0.76);
   text-decoration: none;
   border: 1px solid rgba(0,0,0,0.20);
@@ -180,8 +186,11 @@ body{
   background: rgba(255,255,255,0.45);
   font-weight: 700;
   font-size: 0.88rem;
+  font-family: inherit;
+  cursor: pointer;
 }
-.hero-actions a:hover{ background: rgba(255,255,255,0.72); }
+.hero-actions a:hover,
+.hero-actions button:hover{ background: rgba(255,255,255,0.72); }
 
 .block{ margin-top: 18px; }
 .block-title{ display: grid; grid-template-columns: max-content 1fr; align-items: center; gap: 14px; margin: 12px 0 10px; }
@@ -247,9 +256,23 @@ body{
   .fit-grid, .earlier-grid{ grid-template-columns: 1fr; }
   .download-stack{ grid-template-columns: 1fr; }
 }
+@page{ size: A4; margin: 10mm; }
+
 @media print{
+  *{ -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  html, body{ min-height: auto; }
   body{ background: #fff; }
   .page{ width: 100%; margin: 0; }
   .cv{ box-shadow: none; border-radius: 0; min-height: auto; }
-  .hero-actions, .download-stack{ display: none; }
+  .hero-actions, .download-stack{ display: none !important; }
+  .side{ padding: 16px 14px; }
+  .main{ padding: 16px 18px; }
+  .avatar{ width: 118px; height: 118px; }
+  .side-block{ padding: 10px 0; margin-top: 6px; }
+  .block{ margin-top: 12px; break-inside: avoid; }
+  .item{ break-inside: avoid; padding: 9px 0; }
+  .earlier-card{ break-inside: avoid; }
+  .text{ line-height: 1.48; }
+  .bullets{ line-height: 1.38; }
+  .bullets li{ margin: 4px 0; }
 }
