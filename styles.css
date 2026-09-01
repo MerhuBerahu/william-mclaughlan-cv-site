@@ -259,15 +259,55 @@ body{
 @page{ size: A4; margin: 10mm; }
 
 @media print{
-  *{ -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  *{ -webkit-print-color-adjust: economy; print-color-adjust: economy; }
   html, body{ min-height: auto; }
-  body{ background: #fff; }
+  body{ background: #fff !important; color: #111 !important; }
   .page{ width: 100%; margin: 0; }
-  .cv{ box-shadow: none; border-radius: 0; min-height: auto; }
+  .cv{ box-shadow: none; border-radius: 0; min-height: auto; border: 0; }
   .hero-actions, .download-stack{ display: none !important; }
-  .side{ padding: 16px 14px; }
-  .main{ padding: 16px 18px; }
-  .avatar{ width: 118px; height: 118px; }
+  .side,
+  .main,
+  .hero,
+  .earlier-card,
+  .fit-grid div,
+  .chip,
+  .contact-ico,
+  .avatar{
+    background: #fff !important;
+    background-image: none !important;
+    color: #111 !important;
+    box-shadow: none !important;
+  }
+  .side{
+    padding: 16px 14px;
+    border-right: 1px solid #bbb;
+  }
+  .side a,
+  .side-title,
+  .contact-item,
+  .chip,
+  .muted,
+  .text,
+  .sub,
+  .dates,
+  .bullets,
+  .footer,
+  .icon span:last-child,
+  .earlier-card span,
+  .earlier-card em{
+    color: #111 !important;
+  }
+  .main{ padding: 16px 18px; background: #fff !important; }
+  .avatar{ width: 100px; height: 100px; border: 1px solid #777; }
+  .icon img{ filter: none !important; }
+  .tech-mark{ color: #111 !important; text-shadow: none !important; border: 1px solid #999; border-radius: 4px; }
+  .chip,
+  .earlier-card,
+  .fit-grid div{
+    border-color: #ccc !important;
+  }
+  .hero{ border: 1px solid #ccc; padding: 12px 12px 8px; }
+  .hero-line{ background: #555; }
   .side-block{ padding: 10px 0; margin-top: 6px; }
   .block{ margin-top: 12px; break-inside: avoid; }
   .item{ break-inside: avoid; padding: 9px 0; }
